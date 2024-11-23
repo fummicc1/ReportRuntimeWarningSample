@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import os
+
+let runtimeWarning = RuntimeWarning()
 
 struct ContentView: View {
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,6 +20,11 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .task {
+            await runtimeWarning.log(
+                message: "RuntimeWarningが表示されました。"
+            )
+        }
     }
 }
 
